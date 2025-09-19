@@ -3,7 +3,7 @@
 
 <script>  
 import Navigation from '$lib/Components/Navigation.svelte';
-
+import Chart from '$lib/Components/Chart.svelte';
 
 
 
@@ -13,3 +13,4 @@ import Navigation from '$lib/Components/Navigation.svelte';
 
 
 <Navigation />
+<Chart />
