@@ -1,4 +1,6 @@
-<script></script>
+<script>
+    import weatherData1Day from '$lib/Components/Weather.svelte';
+</script>
 <!-- showing weather data in charts -->
 <main>
     <section>
@@ -10,7 +12,18 @@
        
         <article class="chart">
             <span>Temperature Chart Placeholder</span>
-            
+           <img src="https://via.placeholder.com/400x200?text=Temperature+Chart" alt="Temperature Chart">
+            <ul>
+                {#if $weatherData1Day && $weatherData1Day.hourly}
+                    {#each $weatherData1Day.hourly.temperature_2m as temp, index}
+                        <li>Hour {index}: {temp}°C</li>
+                    {/each}
+                {:else}
+                    <li>Loading data...</li>
+                {/if}
+                
+            </ul>
+
         </article>
     </section>
 </main>
