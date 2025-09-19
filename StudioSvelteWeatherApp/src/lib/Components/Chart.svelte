@@ -1,58 +1,47 @@
 <script>
-   import Weather from "./Weather.svelte";
-//    Weather.LoadWeatherData(Weather.apiURL);
-   import  weatherData1Day  from "./Weather.svelte";
-   import LoadWeatherData from "./Weather.svelte";
+    import { onMount } from 'svelte';
+    import { weatherData1Day, LoadWeatherData } from '$lib/stores/weather.js';
+
+    /**
+	 * @type {{ loaded: any; hourly: any; }}
+	 */
+    let data;
+
+    const unsubscribe = weatherData1Day.subscribe(value => {
+        data = value;
+    });
+
+    onMount(() => {
+        LoadWeatherData();
+        return () => unsubscribe(); // Cleanup
+    });
 </script>
-<!-- showing weather data in charts -->
-<main>
-    <section>
-        <h1>Weather Charts</h1>
-        <p>Visual representation of weather data.</p>
-    </section>
-    <section>
-        <h2>Temperature Over Time</h2>
-       
-        <article class="chart">
-            <span>Temperature Chart Placeholder</span>
-           <img src="https://via.placeholder.com/400x200?text=Temperature+Chart" alt="Temperature Chart">
-           
-            <!--  -->
-            {#if data?.loaded}
-                <ul>
-                    {#each data.hourly.temperature_2m as temp, index}
-                        <li>{data.hourly.time[index]}: {temp}°C</li>
-                    {/each}
-                </ul>
-            {:else}
-                <p>Loading data...</p>
-            {/if}
-        </article>
-    </section>
-</main>
 
-
+{#if data?.loaded}
+    <h2>Hourly Temperatures</h2>
+    <ul>
+        {#each data.hourly.time as time, i}
+            <li>{time}: {data.hourly.temperature_2m[i]}°C </li>
+        {/each}
+    </ul>
+{:else}
+    <p>Loading weather data...</p>
+{/if}
 
 <style>
-    main {
-        padding: 1rem;
-        font-family: Arial, sans-serif;
-    }
-
-    h1 {
+    h2 {
         color: #2c3e50;
     }
 
-    section {
-        margin-bottom: 1.5rem;
+    ul {
+        list-style-type: none;
+        padding: 0;
     }
 
-    .chart {
-        width: 100%; 
-        height: 300px; 
-        background-color: #f0f0f0; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center;
+    li {
+        background: #ecf0f1;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 4px;
     }
 </style>
