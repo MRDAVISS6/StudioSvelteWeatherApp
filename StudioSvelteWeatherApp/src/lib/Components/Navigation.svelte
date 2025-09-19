@@ -14,7 +14,7 @@
  
 a{
     font-weight: bold;
-    color:rgb(84, 172, 142);
+    color:rgb(221, 192, 25);
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
@@ -26,7 +26,7 @@ section{
     position: fixed;
     display: flex;
     border: 1px solid black;
-    justify-content: space-around;
+    justify-content:space-evenly;
     align-items: center;
     width:100%;
     background-color: rgb(80, 80, 80);
