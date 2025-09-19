@@ -1,11 +1,11 @@
 <script>
-    
+    import Button.svelte from '$lib/Components/Button.svelte';
 </script>
 
 <section>
     <a href="/">24HR Forecast</a>
     <a href="/about">7 Day Forecast</a>
-    <button>🌞 / 🌙</button>
+    <Button />
 </section>
 
 <style>
