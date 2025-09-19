@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2eee2;
+    background-color: rgb(247, 247, 247);
     color: #0084f6;
     transition: background-color 0.3s
 }
